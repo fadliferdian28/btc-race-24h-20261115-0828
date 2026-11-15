@@ -2,13 +2,13 @@
 """Capitulation buyer — the previous race winners' method, aimed at the ONE
 washout that matters.
 
-Entry: close at least 7% below the session high (the day's capitulation
+Entry: close at least 7.5% below the session high (the day's capitulation
 drop) AND RSI(14) below 40 (oversold). In the dev window the market fell
 -7.56% to its bottom then recovered +3.9%: every earlier dip was a pause
 in the downtrend, only the capitulation bottom reversed. Buying every dip
 loses (12 losing iterations proved it); buying ONLY the capitulation is
 what the last race's "Washout Recovery" / "Capitulation-bounce" winners did.
-Exit: RSI above 60 (bounce exhausted) OR +2.0% over cost OR -1.0% under
+Exit: RSI above 60 (bounce exhausted) OR +3.0% over cost OR -1.5% under
 cost OR 120 bars held.
 Risk: one position at a time, 20% drawdown halt, every trade journaled
 to stderr. Long only, $1,000 paper USDC, 1-min cbBTC.
@@ -210,7 +210,7 @@ def on_batch(state, batch):
         orders.append(_sell_order(state, held.qty))
         return orders
 
-    # Entry: the capitulation — close >= 7% below the session high AND
+    # Entry: the capitulation — close >= 7.5% below the session high AND
     # RSI oversold. Only the washout bottom reverses; earlier dips are
     # pauses in the downtrend.
     sh = S["session_high"]
